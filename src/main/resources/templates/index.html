@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-
-    <title>Spring Framework Guru</title>
-
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="zh-CN">
+    <title>搜索引擎</title>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div class="row" style="margin-top: 100px;">
+        <div class="col-md-6 col-md-offset-3">
+            <img src="../static/images/logo.png" th:src="@{/images/logo.png}" style="margin-left: auto;margin-right: auto"  class="img-responsive"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" placeholder="文本内容">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">开始检索</button>
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
