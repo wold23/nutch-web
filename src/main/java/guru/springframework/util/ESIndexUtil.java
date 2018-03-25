@@ -93,10 +93,8 @@ public class ESIndexUtil {
     }
 
 
-    public Page search(String query, int pageNum, boolean highLight, int pageSize) {
-        if (pageSize == 0) {
-            pageSize = Page.pageSize;
-        }
+    public Page search(String query, int pageNum, boolean highLight) {
+        int pageSize = Page.pageSize;
         List<Map<String, String>> books = Lists.newArrayList();
         Page result = new Page();
         result.setCurrentPage(pageNum);

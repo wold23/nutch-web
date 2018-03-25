@@ -34,5 +34,7 @@ public class Page {
      */
     private List<Map<String, String>> list;
 
-
+    public int getTotalPage() {
+        return totalNum / pageSize + 1;
+    }
 }
