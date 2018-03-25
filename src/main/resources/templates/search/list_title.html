@@ -54,6 +54,15 @@
             window.location.href = "/search?wd=" + [[${wd}]] +"&pageNum="+page;
         }
     }
+    $('#searchText').keypress(function(event){
+        var keyCode = (event.keyCode ? event.keyCode : event.which);
+        if(keyCode === 13){
+            var text = $("#searchText").val();
+            if(text) {
+                window.location.href = "/search?wd=" + text;
+            }
+        }
+    });
 
 </script>
 </body>
