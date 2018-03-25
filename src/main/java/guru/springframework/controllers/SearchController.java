@@ -25,8 +25,8 @@ public class SearchController {
 
     @RequestMapping("/search/json")
     @ResponseBody
-    public Page searchJson(String wd){
-        Page result = esIndexUtil.search(wd, 0, false);
+    public Page searchJson(String wd,@RequestParam(value="pageNum",required = false,defaultValue = "0") Integer pageNum){
+        Page result = esIndexUtil.search(wd, pageNum, true);
         System.out.println(JSON.toJSONString(result));
         return result;
     }
