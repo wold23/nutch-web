@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head lang="zh-CN">
-    <title>搜索引擎</title>
+    <title>搜索引擎-管理端</title>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -14,22 +14,24 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="文本内容" id="searchText">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" id="search">开始检索</button>
-                </span>
-            </div>
+            <button class="btn btn-default" type="button" id="config">配置中心</button>
+            <button class="btn btn-default" type="button" id="init">重置索引</button>
+            <button class="btn btn-default" type="button" id="start">提交索引申请</button>
         </div>
     </div>
+
 </div>
 <script>
     $(function(){
-        $("#search").click(function () {
-            var text = $("#searchText").val();
-            if(text) {
-                window.location.href = "/search?wd=" + text;
-            }
+        $("#init").click(function () {
+            $.get("/admin/init",function () {
+                console.log("ddd");
+            })
+        });
+        $("#start").click(function () {
+            $.get("/admin/start",function () {
+                console.log("ddd");
+            })
         })
     })
 </script>
