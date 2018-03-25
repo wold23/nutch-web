@@ -39,14 +39,23 @@ public class BookIndexUtil {
         BookIndexConfig chu_ban_zhe = new BookIndexConfig("chu_ban_zhe","出版者","出版者");
         indexConfigs.add(chu_ban_zhe);
 
+        BookIndexConfig chu_ban_shijian = new BookIndexConfig("chu_ban_shijian","出版时间","出版时间");
+        indexConfigs.add(chu_ban_shijian);
+
         BookIndexConfig chu_ban_di_dian = new BookIndexConfig("chu_ban_di_dian","出版地点","出版地点");
         indexConfigs.add(chu_ban_di_dian);
+
+        BookIndexConfig fuzhu_shuoming = new BookIndexConfig("fuzhu_shuoming","附注说明","附注说明");
+        indexConfigs.add(fuzhu_shuoming);
 
         BookIndexConfig zhu_ti_ci = new BookIndexConfig("zhu_ti_ci","主题词","主题词");
         indexConfigs.add(zhu_ti_ci);
 
         BookIndexConfig zhai_yao = new BookIndexConfig("zhai_yao","摘要","摘要");
         indexConfigs.add(zhai_yao);
+
+        BookIndexConfig pinyin_timing = new BookIndexConfig("pinyin_timing","拼音题名","拼音题名");
+        indexConfigs.add(pinyin_timing);
 
         return indexConfigs;
     }

@@ -32,22 +32,29 @@
     </div>
     <nav>
         <ul class="pager">
-            <li onclick="goto(${page.currentPage-1})" class="previous" th:if="${page.currentPage != 0}"><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
-            <li onclick="goto(${page.currentPage+1})" class="next" th:if="${(page.currentPage+1) != page.totalPage}"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+            <li class="previous" th:if="${page.currentPage != 0}"><a href="javascript:void(0)" th:onclick="|goto(${page.currentPage-1})|"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+            <li>共<span th:text="${page.totalPage}"></span>页 <span th:text="${page.totalNum}"></span>条数据</li>
+            <li class="next" th:if="${(page.currentPage+1) != page.totalPage}"><a href="javascript:void(0)" th:onclick="|goto(${page.currentPage+1})|">下一页 <span aria-hidden="true">&rarr;</span></a></li>
         </ul>
     </nav>
 
 </div>
-<script>
+<script th:inline="javascript">
     $(function(){
-
+        $("#search").click(function () {
+            var text = $("#searchText").val();
+            if(text) {
+                window.location.href = "/search?wd=" + text;
+            }
+        })
     });
     function goto(page) {
         var text = $("#searchText").val();
         if(text) {
-            window.location.href = "/search?wd=" + [[${wd}]];
+            window.location.href = "/search?wd=" + [[${wd}]] +"&pageNum="+page;
         }
     }
+
 </script>
 </body>
 </html>

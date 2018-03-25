@@ -14,12 +14,18 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <button class="btn btn-default" type="button" id="config">配置中心</button>
+            <div class="input-group">
+                <input id="filePath" type="text" class="form-control" th:value="${filePath}">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="config">修改源位置(重启失效)</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3" style="margin-top: 10px;">
             <button class="btn btn-default" type="button" id="init">重置索引</button>
             <button class="btn btn-default" type="button" id="start">提交索引申请</button>
         </div>
     </div>
-
 </div>
 <script>
     $(function(){
@@ -30,6 +36,11 @@
         });
         $("#start").click(function () {
             $.get("/admin/start",function () {
+                console.log("ddd");
+            })
+        });
+        $("#config").click(function () {
+            $.get("/admin/change?path="+encodeURIComponent($("#filePath").val()),function () {
                 console.log("ddd");
             })
         })
