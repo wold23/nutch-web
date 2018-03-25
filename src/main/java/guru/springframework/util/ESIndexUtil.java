@@ -48,7 +48,8 @@ public class ESIndexUtil {
         final XContentBuilder booksBuilder;
         try {
             booksBuilder = XContentFactory.jsonBuilder().startObject().startObject(BOOK_TYPE).startObject("properties");
-            documentType(booksBuilder);
+            //documentType(booksBuilder); // 根据k,v类型匹配
+            booksBuilder.startObject("doc").field("type", "string").endObject();
             booksBuilder.endObject().endObject().endObject();
             XContentBuilder setting = XContentFactory.jsonBuilder().startObject().startObject("analysis").startObject("analyzer").startObject("my_index_analyzer")
                     .field("type", "custom")
@@ -65,6 +66,7 @@ public class ESIndexUtil {
             log.error("创建index/type失败", e);
         }
     }
+
 
     public void docIndex(String json) {
         elasticsearchTemplate.getClient().prepareIndex(INDEX, BOOK_TYPE)

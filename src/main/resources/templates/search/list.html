@@ -5,7 +5,7 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-<div class="container-flui" style="padding: 0px 400px 20px 50px">
+<div class="container-flui" style="padding: 0 50px 20px 50px">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <div class="page-header">
         <div class="input-group" style="width: 60%">
@@ -16,17 +16,10 @@
         </div>
     </div>
     <h1 th:if="${page.totalNum == 0}">没有结果</h1>
-    <div class="panel panel-default" th:each="dataMap : ${page.list}">
-        <div class="panel-body">
-            <div class="row" th:if="${dataMap.get('title') != null}">
-                <div class="col-md-10">
-                    <h3><a href="javascript:void(0)" th:text="${dataMap.get('title')}"></a></h3>
-                </div>
-            </div>
-            <div class="row" th:each="entry:${dataMap}">
-                <div class="col-md-10" th:if="${entry.key != 'title'}">
-                    <p th:text="${entry.value}"></p>
-                </div>
+    <div th:each="dataMap : ${page.list}">
+        <div class="row" th:each="entry:${dataMap}">
+            <div class="col-md-12" >
+                <pre th:if="${entry.key != 'title'}" data-th-utext="${entry.value}"></pre>
             </div>
         </div>
     </div>

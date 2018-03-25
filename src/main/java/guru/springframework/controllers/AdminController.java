@@ -90,6 +90,20 @@ public class AdminController {
         });
     }
 
-
+    @RequestMapping("/doc")
+    @ResponseBody
+    public void doc() {
+        Collection<File> files = FileUtils.listFiles(new File(filePath), new String[]{"txt"}, true);
+        files.forEach(file -> {
+            try {
+                String doc = FileUtils.readFileToString(file, "utf-8");
+                Map<String,String> docMap= Maps.newHashMap();
+                docMap.put("doc",doc);
+                esIndexUtil.docIndex(JSON.toJSONString(docMap));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
 }
