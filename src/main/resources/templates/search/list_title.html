@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="zh-CN">
+    <title>搜索引擎-结果页</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container-flui" style="padding: 0px 400px 20px 50px">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div class="page-header">
+        <div class="input-group" style="width: 60%">
+            <input type="text" class="form-control" id="searchText" th:value='${wd}'>
+            <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="search">开始检索</button>
+            </span>
+        </div>
+    </div>
+    <h1 th:if="${page.totalNum == 0}">没有结果</h1>
+    <div class="panel panel-default" th:each="dataMap : ${page.list}">
+        <div class="panel-body">
+            <div class="row" th:if="${dataMap.get('title') != null}">
+                <div class="col-md-10">
+                    <h3><a href="javascript:void(0)" th:text="${dataMap.get('title')}"></a></h3>
+                </div>
+            </div>
+            <div class="row" th:each="entry:${dataMap}">
+                <div class="col-md-10" th:if="${entry.key != 'title'}">
+                    <p th:text="${entry.value}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <ul class="pager">
+            <li class="previous" th:if="${page.currentPage != 0}"><a href="javascript:void(0)" th:onclick="|goto(${page.currentPage-1})|"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+            <li>共<span th:text="${page.totalPage}"></span>页 <span th:text="${page.totalNum}"></span>条数据</li>
+            <li class="next" th:if="${(page.currentPage+1) != page.totalPage}"><a href="javascript:void(0)" th:onclick="|goto(${page.currentPage+1})|">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+    </nav>
+
+</div>
+<script th:inline="javascript">
+    $(function(){
+        $("#search").click(function () {
+            var text = $("#searchText").val();
+            if(text) {
+                window.location.href = "/search?wd=" + text;
+            }
+        })
+    });
+    function goto(page) {
+        var text = $("#searchText").val();
+        if(text) {
+            window.location.href = "/search?wd=" + [[${wd}]] +"&pageNum="+page;
+        }
+    }
+
+</script>
+</body>
+</html>
