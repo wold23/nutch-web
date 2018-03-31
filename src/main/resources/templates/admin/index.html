@@ -27,20 +27,21 @@
         </div>
     </div>
 </div>
-<script>
+<script  th:inline="javascript">
+    var link = /*[[@{/admin}]]*/ '';
     $(function(){
         $("#init").click(function () {
-            $.get("/admin/init",function () {
+            $.get(link+"/init",function () {
                 console.log("ddd");
             })
         });
         $("#start").click(function () {
-            $.get("/admin/doc",function () {
+            $.get(link+"/doc",function () {
                 console.log("ddd");
             })
         });
         $("#config").click(function () {
-            $.get("/admin/change?path="+encodeURIComponent($("#filePath").val()),function () {
+            $.get(link+"/change?path="+encodeURIComponent($("#filePath").val()),function () {
                 console.log("ddd");
             })
         })

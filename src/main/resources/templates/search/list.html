@@ -33,11 +33,12 @@
 
 </div>
 <script th:inline="javascript">
+    var link = /*[[@{/search?wd=}]]*/ '';
     $(function(){
         $("#search").click(function () {
             var text = $("#searchText").val();
             if(text) {
-                window.location.href = "/search?wd=" + text;
+                window.location.href = link + text;
             }
         })
     });
@@ -46,14 +47,14 @@
         if(keyCode === 13){
             var text = $("#searchText").val();
             if(text) {
-                window.location.href = "/search?wd=" + text;
+                window.location.href = link + text;
             }
         }
     });
     function goto(page) {
         var text = $("#searchText").val();
         if(text) {
-            window.location.href = "/search?wd=" + [[${wd}]] +"&pageNum="+page;
+            window.location.href = link + [[${wd}]] +"&pageNum="+page;
         }
     }
 
